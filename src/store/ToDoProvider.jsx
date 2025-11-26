@@ -1,7 +1,11 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { Bounce, Slide, toast, Zoom } from "react-toastify";
 export const TodoContext = createContext();
-const initialState = []; //initial state is an empty array, indicating that there are no to-do items at the start.
+const getTodo=()=>{
+  let data = localStorage.getItem("todo")
+  return data ? JSON.parse(data):[]
+}
+const initialState = getTodo(); //initial state is an empty array, indicating that there are no to-do items at the start.
 const todoReducer = (state, action) => { //reducer function takes the current state and an action as arguments and returns a new state based on the action type.
   switch (action.type) {  //action.type tells the reducer what kind of action to perform.it is used to determine what kind of action is being dispatched.
     case "Add": {
@@ -111,6 +115,10 @@ const todoReducer = (state, action) => { //reducer function takes the current st
 };
 export const ToDoProvider = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, initialState); ////useReducer hook is used to manage the state of the to-do list. It takes the reducer function and the initial state as arguments and returns the current state and a dispatch function.
+
+  useEffect(()=>{
+    localStorage.setItem("todo",JSON.stringify(state))
+  })
   return (
     <TodoContext.Provider value={{ state, dispatch }}>
       {children}

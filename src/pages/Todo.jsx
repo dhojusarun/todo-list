@@ -14,7 +14,7 @@ function ToDo() {
   console.log(state);
 
   return (
-    <div className="bg-gradient-to-r from-blue-200 via-green-100 to-red-300 p-36">
+    <div className="bg-gradient-to-r from-blue-200 via-green-100 to-red-300 p-30 max-h-full">
       <div className="bg-amber-700 p-5 w-[800px] m-auto mt-10 text-white space-y-5 ">
         <div className="space-y-3">
           <h1 className="text-3xl">Todo List</h1>
