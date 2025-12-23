@@ -3,23 +3,26 @@ import checklist from "../assets/checklist.jpg";
 
 function Home() {
   return (
-    <div className="bg-gradient-to-r from-blue-200 via-green-100 to-red-300 p-8 min-h-screen">
-      {/* Changed: Added flex-col for mobile so image and text don't overlap, kept items-center */}
-      <div className="flex flex-col lg:flex-row justify-center items-center">
+    // Changed: h-screen and overflow-hidden ensures the page never scrolls
+    <div className="bg-gradient-to-r from-blue-200 via-green-100 to-red-300 h-screen overflow-hidden p-4">
+      
+      {/* Changed: Used h-full and justify-center to center content instead of using mt-60 */}
+      <div className="flex flex-col lg:flex-row justify-center items-center h-full gap-5">
         
-        {/* LAYOUT PRESERVED: 
-          - Desktop: mt-60 and text-8xl (lg:mt-60 lg:text-8xl)
-          - Mobile: Adjusted to text-4xl and mt-20 so it fits the device
+        {/* LAYOUT PRESERVED:
+            - Desktop: lg:text-8xl
+            - Mobile: text-4xl (to prevent horizontal scroll)
+            - Removed mt-60 to keep content within the screen
         */}
-        <h1 className="text-4xl md:text-6xl lg:text-8xl text-center font-bold m-auto text-blue-900 mt-20 lg:mt-60 underline">
+        <h1 className="text-4xl md:text-6xl lg:text-8xl text-center font-bold text-blue-900 underline">
           Welcome to To-Do App
         </h1>
 
-        {/* Added: Responsive width so the image doesn't exceed screen width on mobile */}
+        {/* Added: max-h for the image so it shrinks to fit the screen height on small devices */}
         <img 
           src={checklist} 
           alt="checklist" 
-          className="w-full max-w-[300px] md:max-w-md lg:max-w-none mt-10 lg:mt-60" 
+          className="w-auto max-h-[30vh] md:max-h-[50vh] lg:max-h-none object-contain" 
         />
         
       </div>
